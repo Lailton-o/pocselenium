@@ -16,7 +16,7 @@ namespace SpecFlowProject1.Steps
         public SimulacaoDeProdutosSteps(IWebDriver driver)
         {
             this.driver = driver;
-            Wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(150));
+            Wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(60));
         }
 
         [Given(@"Que eu preencha dados basicos do cliente")]
@@ -41,12 +41,26 @@ namespace SpecFlowProject1.Steps
         [Given(@"que eu preencha os dados da cotacao do cliente")]
         public void DadoQueEuPreenchaOsDadosDaCotacaoDoCliente()
         {
-            //EsperarCarregar(driver, By.XPath("//div[contains(@class,'loading')]"));
-            Assert.Equal("https://hmgdigital.mag.com.br/contratacao/simulacao", driver.Url);
-            //Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//label[@for='quoter_form__your-data__gender__1' and contains(text(),'FEMININO')]")));
-            //Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("quoter_form__your-data__occupation__input"))).Click();
-            //Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("quoter_form__your-data__occupation__input"))).SendKeys("ESTUDANTE");
-            //Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("quoter_form__your-data__occupation__input")));
+
+            Wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath("//div[contains(@class,'loading')]")));
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//label[@for='quoter_form__your-data__gender__2' and contains(text(),'Feminino')]"))).Click();
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='quoter_form__your-data__occupation__input']"))).Click();
+            //Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='quoter_form__your-data__occupation__input']"))).SendKeys("Empregado em empresa privada");
+
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(text(), 'Empregado em empresa privada')]"))).Click();
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@id='quoter_form__your-data__works_as__input']"))).Click();
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@id='quoter_form__your-data__works_as__input']"))).SendKeys("Advogado");
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@class, 'vd-input-suggestion__option')][text()='Advogado']"))).Click();
+
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@placeholder='Sua renda mensal']"))).Click();
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@placeholder='Sua renda mensal']"))).SendKeys("R$ 6.000,00");
+
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//label[@class='radio-list__label' and @for='quoter_form__your-data__has_companion__1']"))).Click();
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@id='quoter_form__your-data__companion_birthday']"))).Click();
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@id='quoter_form__your-data__companion_birthday']"))).SendKeys("01/09/1993");
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//label[@for='quoter_form__your-data__companion_gender__2' and contains(text(),'Feminino')]"))).Click();
+
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='quoter_form']/div/div/div/div[2]/div/div[2]/button"))).Click();
             //EsperaAparecerClica(driver, By.XPath("//*[@id='quoter_form__your - data__occupation__input']"), 45);
             //EsperaAparecerClica(driver, By.XPath("//div[contains(text(), 'Empregado em empresa privada')]"), 45);
             //EsperaAparecerClicaEscreve(driver, By.XPath("//input[@id='quoter_form__your-data__works_as__input']"), "Advogado");
@@ -56,25 +70,25 @@ namespace SpecFlowProject1.Steps
         [Given(@"que eu selecione")]
         public void DadoQueEuSelecione()
         {
-            ScenarioContext.Current.Pending();
+            //ScenarioContext.Current.Pending();
         }
         
         [Given(@"que eu cote")]
         public void DadoQueEuCote()
         {
-            ScenarioContext.Current.Pending();
+            //ScenarioContext.Current.Pending();
         }
         
         [Given(@"que eu clico em gerar estudo")]
         public void DadoQueEuClicoEmGerarEstudo()
         {
-            ScenarioContext.Current.Pending();
+            //ScenarioContext.Current.Pending();
         }
         
         [Then(@"obtenho um pdf")]
         public void EntaoObtenhoUmPdf()
         {
-            ScenarioContext.Current.Pending();
+            //ScenarioContext.Current.Pending();
         }
 
         public virtual void EsperaAparecerClicaEscreve(IWebDriver driver, By by, string text, int tempo = 100)
